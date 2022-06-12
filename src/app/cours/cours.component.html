@@ -1,0 +1,125 @@
+<main role="main" class="container mt-3">
+   
+    <div class="card">
+      <div class="card-header">
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="btn btn-primary" (click)="storeForm()" [hidden]="btnDisplayForm" > <i class="bi bi-plus"></i> add cours</button>
+          <button class="btn btn-success" (click)="displaylist()"  [hidden]="btnDisplayList" ><i class="bi bi-list"></i> all cours</button>
+        </div>
+      </div>
+      <div class="card-body">
+      
+        <ng-container *ngIf="varDisplay; else displayList">
+
+          <div class="row">
+            <div class="col-12 mb-2 mt-4">
+  
+              <form #storeForm="ngForm">
+                  <div class="col-auto mb-2">
+                    <input type="hidden" [(ngModel)]="myItem.id" name="id" class="form-control" id="exampleInputEmail1" >        
+                  </div>
+    
+                  <div class="row">
+                  <div class="col-6">
+    
+                    <div class="form-control">
+                      <label class="form-label"> <b> Photo </b></label>
+                     <input type="text"  [(ngModel)]="myItem.image"  class="form-control" name="image" placeholder="Photo" #photoVar="ngModel" [ngClass]="{'is-invalid': photoVar.touched  && !photoVar.valid}" required data-toggle="tooltip" data-placement="top" title="required">
+                    </div>
+    
+                      <div class="form-control mt-3">
+                        <label class="form-label"><b> Title </b></label>
+                        <input type="text"  [(ngModel)]="myItem.title"  class="form-control" name="title" placeholder="Title" #titleVar="ngModel" [ngClass]="{'is-invalid': titleVar.touched  && !titleVar.valid}" required data-toggle="tooltip" data-placement="top" title="required">
+                      </div>
+    
+                      <div class="form-control mt-3">
+                        <label class="form-label"><b> Price</b></label>
+                        <input type="text"  [(ngModel)]="myItem.price"  class="form-control" name="price" placeholder="Price" #priceVar="ngModel" [ngClass]="{'is-invalid': priceVar.touched  && !priceVar.valid}" required data-toggle="tooltip" data-placement="top" title="required">
+                      </div>
+    
+                  </div>
+                  <div class="col-6">
+    
+                    <div class="form-control">
+                      <label class="form-label"><b> Content</b></label>
+                      <textarea type="text"  [(ngModel)]="myItem.content"  class="form-control" name="content" placeholder="Content" rows="5" #contentVar="ngModel" [ngClass]="{'is-invalid': contentVar.touched  && !contentVar.valid}" required data-toggle="tooltip" data-placement="top" title="required"></textarea>
+                    </div>
+                  </div>
+    
+                  </div>
+  
+                        <div class="row mt-3">
+                       
+                                  <div class="col-auto">
+                                  <button type="submit" class="btn btn-primary mb-2" (click)="addCours()" [hidden]="addTaskBtn" [ngClass]="{'disabled': !storeForm.valid}" > <i class="bi bi-save"></i> store new cours </button>
+                                  </div>
+              
+                                  <div class="col-auto">
+                                  <button type="submit" class="btn btn-success mb-2" (click)="updateCours()"  [hidden]="updateTaskBtn" [ngClass]="{'disabled': !storeForm.valid}"><i class="bi bi-pencil"></i> update</button>
+                                  </div>
+              
+                                  <div class="col-auto">
+                                  <button type="submit" class="btn btn-danger mb-2" (click)="cleaForm()"  [hidden]="updateCancelBtn"><i class="bi bi-x-lg"></i></button>
+                                  </div>
+                                          
+                      </div>
+              </form>
+  
+            </div>
+          </div>
+          
+        </ng-container>
+        
+        <ng-template #displayList>
+
+       
+          <h4>List</h4>
+          <hr>
+          <div class="row">
+              <form class="col-4">
+                <input type="text"  [(ngModel)]="keyword" name="keyword" class="form-control" placeholder="Searching by keyword" (input)="searchBykeyword()">
+              </form>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of items">
+                    <td> <img src="{{item.image}}" style="width: 100px ; height: 50px;"/></td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.content}}</td>
+                    <td><button class="btn btn-outline-primary" (click)="updateForm(item)" ><i class="bi bi-pencil"></i></button></td>
+                    <td><button class="btn btn-outline-danger" (click)="deleteCours(item.id)"><i class="bi bi-trash"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <ul class="list-group list-group-horizontal">
+                
+                <a  class="list-group-item list-group-item-action list-group-item-primary" style="width: 20px;"> 1</a>
+                <a  class="list-group-item list-group-item-action list-group-item-primary" style="width: 20px;"> 2</a>
+                <a  class="list-group-item list-group-item-action list-group-item-primary" style="width: 20px;"> 3</a>
+              </ul>
+
+          </div>
+
+
+        </ng-template>
+
+      
+        
+        </div>
+    </div>    
+
+
+
+</main>

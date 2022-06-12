@@ -1,0 +1,25 @@
+{
+  "cours": [
+    {
+      "id": "1",
+      "title": "PHP natif",
+      "price": "600",
+      "content": "php natif",
+      "image": "https://www.mastergradeit.co.za/wp-content/uploads/2019/09/php-300x162.png"
+    },
+    {
+      "id": "2",
+      "title": "JAVA",
+      "price": 500,
+      "content": "java content",
+      "image": "https://www.gcreddy.com/wp-content/uploads/2021/07/Java-Programming-Language-1536x860.png"
+    },
+    {
+      "id": "YZU9Xao",
+      "title": "C#",
+      "price": "2045",
+      "content": "C# content",
+      "image": "https://www.avenga.com/wp-content/uploads/2020/11/C-Sharp-1536x864.png"
+    }
+  ]
+}
